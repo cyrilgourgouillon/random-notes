@@ -4,7 +4,7 @@ import { getListOfRandomNotes } from "./services/noteService";
 import { Button, NotesList } from "./components";
 
 const App = () => {
-  const [notes, setNotes] = useState<Note[]>([]);
+  const [notes, setNotes] = useState<Note[]>(getListOfRandomNotes());
 
   const handleOnClick = () => {
     setNotes(getListOfRandomNotes());

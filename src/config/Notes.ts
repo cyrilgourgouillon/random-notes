@@ -1,23 +1,23 @@
 export enum Notes {
-	'C',
-	'C#',
-	'Db',
-	'D',
-	'D#',
-	'Eb',
-	'E',
-	'F',
-	'F#',
-	'Gb',
-	'G',
-	'G#',
-	'Ab',
-	'A',
-	'A#',
-	'Bb',
-	'B',
+	C = 'C',
+	Csharp = 'C#',
+	Dbemol = 'Db',
+	D = 'D',
+	Dsharp = 'D#',
+	Ebemol = 'Eb',
+	E = 'E',
+	F = 'F',
+	Fsharp = 'F#',
+	Gbemol = 'Gb',
+	G = 'G',
+	Gsharp = 'G#',
+	Abemol = 'Ab',
+	A = 'A',
+	Asharp = 'A#',
+	Bbemol = 'Bb',
+	B = 'B',
 }
 
 export type Note = keyof typeof Notes;
 
-export const notes = Object.values(Notes).filter(key => !isNaN(Number(key))) as Note[];
+export const notes = Object.values(Notes) as Note[];

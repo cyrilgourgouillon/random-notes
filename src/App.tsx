@@ -9,8 +9,6 @@ const App = () => {
     setNotes(getListOfRandomNotes());
   };
 
-  console.log(notes);
-
   return (
     <div className="w-screen h-screen flex items-center justify-center">
       <div className="flex flex-col items-center">

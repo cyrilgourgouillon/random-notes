@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import { MdBuild } from "react-icons/md";
 import { NotesList } from "../components";
 import { Note } from "../config/Notes";
 import { getListOfRandomNotes } from "../services/noteService";
@@ -18,9 +19,16 @@ export const NotesPage = () => {
       <div className="w-screen flex items-center justify-center">
         <div className="flex flex-col items-center">
           <NotesList notes={notes} />
-          <Button variant='outline' onClick={handleOnClick}>
-            Generate list of notes
-          </Button>
+          <div className="flex flex-col gap-1">
+            <Button colorScheme="green" variant="outline" onClick={handleOnClick}>
+              Generate list of notes
+            </Button>
+            <div className="flex w-full justify-center">
+              <Button leftIcon={<MdBuild />} variant="outline">
+                Add strings
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
       <div>

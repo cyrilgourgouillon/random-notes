@@ -8,7 +8,7 @@ export const Button = ({
   return (
     <button
       onClick={onClickCallback}
-      className="p-3 drop-shadow-md rounded-lg bg-white hover:bg-orange-50 active:bg-orange-200 border border-neutral-800"
+      className="p-3 drop-shadow-md rounded-lg bg-white hover:bg-neutral-50 active:bg-neutral-200 border border-neutral-800"
     >
       {children}
     </button>

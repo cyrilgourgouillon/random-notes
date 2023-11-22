@@ -1,4 +1,4 @@
-import { Note, notes } from "../config/Notes";
+import { Note, notes } from "../config";
 import { shuffle } from "../utils/shuffle";
 
 export const getListOfRandomNotes = (): Note[] => {

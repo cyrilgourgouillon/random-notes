@@ -3,15 +3,15 @@ import { Button } from "@chakra-ui/react";
 import { MdBuild } from "react-icons/md";
 import { TbArrowsRandom } from "react-icons/tb";
 
+import { GuitarString, Note } from "../config";
 import { NotesList } from "../components";
-import { Note } from "../config";
 
 import { getListOfRandomNotes, getRandomString } from "../services";
 
 export const NotesPage = () => {
   const [notes, setNotes] = useState<Note[]>(getListOfRandomNotes());
   const [isStringVisible, setIsStringVisible] = useState(false);
-  const [guitarString, setGuitarString] = useState(getRandomString());
+  const [guitarString, setGuitarString] = useState<GuitarString>(getRandomString());
 
   const handleGetRandomNoteOnClick = () => {
     setNotes(getListOfRandomNotes());
@@ -45,15 +45,13 @@ export const NotesPage = () => {
             >
               Generate list of notes
             </Button>
-            <div className="flex w-full justify-center">
-              <Button
-                leftIcon={<MdBuild />}
-                variant="outline"
-                onClick={toggleStringVisible}
-              >
-                Add random string
-              </Button>
-            </div>
+            <Button
+              leftIcon={<MdBuild />}
+              variant="outline"
+              onClick={toggleStringVisible}
+            >
+              Toggle string complexity
+            </Button>
           </div>
         </div>
       </div>

@@ -1,11 +1,12 @@
 import { useState } from "react";
-
-import { MdBuild } from "react-icons/md";
-import { NotesList } from "../components";
-import { Note } from "../config/Notes";
-import { getListOfRandomNotes } from "../services/noteService";
 import { Button } from "@chakra-ui/react";
-import { getRandomString } from "../services/stringService";
+import { MdBuild } from "react-icons/md";
+import { TbArrowsRandom } from "react-icons/tb";
+
+import { NotesList } from "../components";
+import { Note } from "../config";
+
+import { getListOfRandomNotes, getRandomString } from "../services";
 
 export const NotesPage = () => {
   const [notes, setNotes] = useState<Note[]>(getListOfRandomNotes());
@@ -21,12 +22,15 @@ export const NotesPage = () => {
     setIsStringVisible((prevState: boolean) => !prevState);
   };
 
-  const GuitarStringDecorator: React.ReactNode =
-    (isStringVisible && <div>{guitarString}</div>) || undefined;
+  const GuitarStringDecorator: React.ReactNode = (
+    <div className={`${isStringVisible ? "" : "invisible"}`}>
+      {guitarString}
+    </div>
+  );
 
   return (
-    <div className="h-screen flex flex-col items-center justify-around">
-      <div className="text-lg font-semibold">RANDOM NOTES GENERATOR</div>
+    <div className="h-screen flex flex-col items-center justify-between">
+      <div className="text-lg font-semibold mt-5">RANDOM NOTES GENERATOR</div>
       <div className="w-screen flex items-center justify-center">
         <div className="flex flex-col items-center">
           <NotesList
@@ -35,6 +39,7 @@ export const NotesPage = () => {
           />
           <div className="flex flex-col gap-1">
             <Button
+              leftIcon={<TbArrowsRandom />}
               variant="outline"
               onClick={handleGetRandomNoteOnClick}
             >
@@ -52,7 +57,7 @@ export const NotesPage = () => {
           </div>
         </div>
       </div>
-      <div>
+      <div className="mb-5">
         {"Made with ❤️ by "}
         <a
           href="https://github.com/cyrilgourgouillon"

@@ -7,7 +7,7 @@ import { FaPlus, FaMinus } from "react-icons/fa";
 import { GuitarString, Note } from "../config";
 import { NotesList } from "../components";
 
-import { getListOfRandomNotes, getRandomString, isValidCountList } from "../services";
+import { getListOfRandomNotes, getRandomString, isValidNoteCountList } from "../services";
 import { DEFAULT_NUMBER_OF_NOTE, NOTES_LIST_MAX, NOTES_LIST_MIN } from "../config/constants";
 
 export const NotesPage = () => {
@@ -32,7 +32,7 @@ export const NotesPage = () => {
   const handleChangeNumberOfNoteDisplayed = (step: number) => {
     setNumberOfNoteDisplayed((prevState: number) => {
       const value = prevState + step;
-      if (isValidCountList(value)) {
+      if (isValidNoteCountList(value)) {
         return value;
       }
       return prevState;

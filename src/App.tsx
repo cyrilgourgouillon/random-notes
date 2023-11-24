@@ -6,6 +6,7 @@ const App = () => {
     <ChakraProvider>
       <div className="h-screen flex flex-col items-center justify-between">
         <NotesPage />
+        {/*<ChordsPage />*/}
         <div className="mb-5">
           {"Made with ❤️ by "}
           <a

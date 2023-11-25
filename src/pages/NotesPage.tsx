@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, IconButton } from "@chakra-ui/react";
+import { Button, ButtonGroup, IconButton } from "@chakra-ui/react";
 
 import { MdBuild } from "react-icons/md";
 import { FaPlus, FaMinus } from "react-icons/fa";
@@ -7,11 +7,22 @@ import { FaPlus, FaMinus } from "react-icons/fa";
 import { GuitarString, Note } from "../config";
 import { NotesList } from "../components";
 
-import { getListOfRandomNotes, getRandomString, isValidNoteCountList } from "../services";
-import { DEFAULT_NUMBER_OF_NOTE, NOTES_LIST_MAX, NOTES_LIST_MIN } from "../config/constants";
+import {
+  getListOfRandomNotes,
+  getRandomString,
+  isValidNoteCountList,
+} from "../services";
+import {
+  DEFAULT_NUMBER_OF_NOTE,
+  NOTES_LIST_MAX,
+  NOTES_LIST_MIN,
+} from "../config/constants";
+import { AutoSkipper } from "../components/AutoSkipper";
 
 export const NotesPage = () => {
-  const [notes, setNotes] = useState<Note[]>(getListOfRandomNotes(DEFAULT_NUMBER_OF_NOTE));
+  const [notes, setNotes] = useState<Note[]>(
+    getListOfRandomNotes(DEFAULT_NUMBER_OF_NOTE)
+  );
   const [isStringVisible, setIsStringVisible] = useState(false);
   const [guitarString, setGuitarString] = useState<GuitarString>(
     getRandomString()
@@ -54,33 +65,32 @@ export const NotesPage = () => {
             notes={notes}
             GuitarStringDecorator={GuitarStringDecorator}
           />
-          <div className="flex flex-col gap-1">
-            <div className="flex gap-1">
+          <div className="flex flex-col gap-1 items-stretch">
+            <ButtonGroup isAttached >
               <IconButton
                 aria-label="minus"
                 icon={<FaMinus />}
-                variant="outline"
                 onClick={() => handleChangeNumberOfNoteDisplayed(-1)}
                 disabled={numberOfNoteDisplayed === NOTES_LIST_MIN}
               />
-              <Button variant="outline" onClick={handleGetRandomNoteOnClick}>
+              <Button onClick={handleGetRandomNoteOnClick}>
                 Generate list of {numberOfNoteDisplayed} notes
               </Button>
               <IconButton
                 aria-label="plus"
                 icon={<FaPlus />}
-                variant="outline"
                 onClick={() => handleChangeNumberOfNoteDisplayed(1)}
                 disabled={numberOfNoteDisplayed === NOTES_LIST_MAX}
               />
-            </div>
+            </ButtonGroup>
             <Button
               leftIcon={<MdBuild />}
-              variant="outline"
+              size="sm" 
               onClick={toggleStringVisible}
             >
               Toggle string complexity
             </Button>
+            <AutoSkipper onSkip={handleGetRandomNoteOnClick}/>
           </div>
         </div>
       </div>

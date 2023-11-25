@@ -1,4 +1,5 @@
-import { Note, notes } from "../config";
+import { Note, notes, cagedNotes } from "../config";
+import { CagedType } from "../config/Caged";
 import { NOTES_LIST_MAX, NOTES_LIST_MIN } from "../config/constants";
 import { getRandomItemFrom } from "../utils/random";
 import { shuffle } from "../utils/shuffle";
@@ -16,3 +17,7 @@ export const isValidNoteCountList = (count: number): boolean => {
 export const getRandomNote = (): Note => {
   return getRandomItemFrom(notes);
 };
+
+export const getRandomNoteFromCaged = (): CagedType => {
+  return getRandomItemFrom(cagedNotes);
+}

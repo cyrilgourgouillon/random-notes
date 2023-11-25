@@ -1,5 +1,5 @@
-import { Chord } from "../../config";
-import { chordToString } from "../../services/chordService";
+import { Chord } from "../config";
+import { chordToString } from "../services/chordService";
 
 export const ChordsList = ({
   chords,

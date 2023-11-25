@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, IconButton } from "@chakra-ui/react";
+import { Button, ButtonGroup, IconButton } from "@chakra-ui/react";
 
 import { FaPlus, FaMinus } from "react-icons/fa";
 
@@ -17,6 +17,7 @@ import {
 } from "../config/constants";
 import { CagedType } from "../config";
 import { MdBuild } from "react-icons/md";
+import { AutoSkipper } from "../components/AutoSkipper";
 
 export const ChordsPage = () => {
   const [chords, setChords] = useState(
@@ -35,7 +36,7 @@ export const ChordsPage = () => {
     setIsShapeVisible((prevState: boolean) => !prevState);
   };
 
-  const handleGetRandomChordOnClick = () => {
+  const handleGetRandomChordsOnClick = () => {
     setChords(getListOfRandomChords(numberOfChordDisplayed));
     setCagedPosition(getRandomNoteFromCaged());
   };
@@ -58,37 +59,35 @@ export const ChordsPage = () => {
 
   return (
     <div className="h-full flex flex-col items-center justify-center">
-      <div className="text-lg font-semibold mb-10">RANDOM CHORDS GENERATOR</div>
       <div className="w-screen flex items-center justify-center">
         <div className="flex flex-col items-center">
           <ChordsList chords={chords} ShapeDecorator={ShapeDecorator} />
           <div className="flex flex-col gap-1">
-            <div className="flex gap-1">
+            <ButtonGroup isAttached>
               <IconButton
                 aria-label="minus"
                 icon={<FaMinus />}
-                variant="outline"
                 onClick={() => handleChangeNumberOfChordDisplayed(-1)}
                 disabled={numberOfChordDisplayed === CHORDS_LIST_MIN}
               />
-              <Button variant="outline" onClick={handleGetRandomChordOnClick}>
+              <Button onClick={handleGetRandomChordsOnClick}>
                 Generate list of {numberOfChordDisplayed} chords
               </Button>
               <IconButton
                 aria-label="plus"
                 icon={<FaPlus />}
-                variant="outline"
                 onClick={() => handleChangeNumberOfChordDisplayed(1)}
                 disabled={numberOfChordDisplayed === CHORDS_LIST_MAX}
               />
-            </div>
+            </ButtonGroup>
             <Button
               leftIcon={<MdBuild />}
-              variant="outline"
+              size="xs"
               onClick={toggleCagedVisible}
             >
               Toggle shape complexity
             </Button>
+            <AutoSkipper onSkip={handleGetRandomChordsOnClick} />
           </div>
         </div>
       </div>

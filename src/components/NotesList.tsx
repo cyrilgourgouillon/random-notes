@@ -1,4 +1,4 @@
-import { Note } from "../../config";
+import { Note } from "../config";
 
 export const NotesList = ({
   notes,

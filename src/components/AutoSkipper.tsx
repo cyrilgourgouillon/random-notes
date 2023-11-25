@@ -37,7 +37,7 @@ export const AutoSkipper = ({ onSkip }: { onSkip: () => void }) => {
     <>
       <ButtonGroup size="sm" isAttached>
         <Button
-          className={`w-full ${speed === undefined ? 'cursor-default' : ''}`}
+          className={`w-full ${speed === undefined ? "cursor-default" : ""}`}
           variant="outline"
           onClick={handleStopAutoSkipper}
           disabled={speed === undefined}
@@ -45,20 +45,20 @@ export const AutoSkipper = ({ onSkip }: { onSkip: () => void }) => {
         >
           {speed === undefined ? "Auto-skipper" : "Stop"}
         </Button>
-				{speeds.map((s, i) => (
-					<IconButton
-					key={i}
-          aria-label="minus"
-          icon={getSpeedIcon(s)}
-          variant="outline"
-          onClick={() => {
-            triggerToast(s);
-            setSpeed(s);
-          }}
-          isActive={speed === s}
-          colorScheme={speed === s ? getSpeedColor(s) : ""}
-        />
-				))}
+        {speeds.map((s, i) => (
+          <IconButton
+            key={i}
+            aria-label="minus"
+            icon={getSpeedIcon(s)}
+            variant="outline"
+            onClick={() => {
+              triggerToast(s);
+              setSpeed(s);
+            }}
+            isActive={speed === s}
+            colorScheme={speed === s ? getSpeedColor(s) : ""}
+          />
+        ))}
       </ButtonGroup>
     </>
   );

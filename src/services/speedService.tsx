@@ -25,14 +25,14 @@ export const getSpeedIcon = (speed: Speed) => {
 export const getSpeedColor = (speed: Speed) => {
   switch (speed) {
     case Speed.walk:
-      return 'yellow';
+      return "yellow";
     case Speed.run:
-      return 'orange';
+      return "orange";
     case Speed.drive:
-      return 'red';
+      return "red";
     case Speed.fly:
-      return 'pink';
+      return "pink";
     case Speed.rush:
-      return 'purple';
+      return "purple";
   }
 };

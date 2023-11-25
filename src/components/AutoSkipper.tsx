@@ -37,7 +37,7 @@ export const AutoSkipper = ({ onSkip }: { onSkip: () => void }) => {
     <>
       <ButtonGroup size="sm" isAttached>
         <Button
-          className="w-full"
+          className={`w-full ${speed === undefined ? 'cursor-default' : ''}`}
           variant="outline"
           onClick={handleStopAutoSkipper}
           disabled={speed === undefined}

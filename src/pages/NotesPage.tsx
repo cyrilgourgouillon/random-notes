@@ -31,7 +31,7 @@ export const NotesPage = () => {
     DEFAULT_NUMBER_OF_NOTE
   );
 
-  const handleGetRandomNoteOnClick = () => {
+  const handleGetRandomNotesOnClick = () => {
     setNotes(getListOfRandomNotes(numberOfNoteDisplayed));
     setGuitarString(getRandomString());
   };
@@ -58,7 +58,6 @@ export const NotesPage = () => {
 
   return (
     <div className="h-full flex flex-col items-center justify-center">
-      <div className="text-lg font-semibold mb-10">RANDOM NOTES GENERATOR</div>
       <div className="w-screen flex items-center justify-center">
         <div className="flex flex-col items-center">
           <NotesList
@@ -66,14 +65,14 @@ export const NotesPage = () => {
             GuitarStringDecorator={GuitarStringDecorator}
           />
           <div className="flex flex-col gap-1 items-stretch">
-            <ButtonGroup isAttached >
+            <ButtonGroup isAttached>
               <IconButton
                 aria-label="minus"
                 icon={<FaMinus />}
                 onClick={() => handleChangeNumberOfNoteDisplayed(-1)}
                 disabled={numberOfNoteDisplayed === NOTES_LIST_MIN}
               />
-              <Button onClick={handleGetRandomNoteOnClick}>
+              <Button onClick={handleGetRandomNotesOnClick}>
                 Generate list of {numberOfNoteDisplayed} notes
               </Button>
               <IconButton
@@ -85,12 +84,12 @@ export const NotesPage = () => {
             </ButtonGroup>
             <Button
               leftIcon={<MdBuild />}
-              size="sm" 
+              size="xs"
               onClick={toggleStringVisible}
             >
               Toggle string complexity
             </Button>
-            <AutoSkipper onSkip={handleGetRandomNoteOnClick}/>
+            <AutoSkipper onSkip={handleGetRandomNotesOnClick} />
           </div>
         </div>
       </div>

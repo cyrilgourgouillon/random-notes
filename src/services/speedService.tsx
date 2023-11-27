@@ -34,5 +34,7 @@ export const getSpeedColor = (speed: Speed) => {
       return "pink";
     case Speed.rush:
       return "purple";
+    default:
+      return "grey";
   }
 };

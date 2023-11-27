@@ -1,5 +1,5 @@
 import { createContext, useState } from 'react';
-import { DEFAULT_NUMBER_OF_NOTE } from '../config/constants';
+import { DEFAULT_NUMBER_OF_CHORD,  } from '../config/constants';
 import { getListOfRandomChords, getRandomNoteFromCaged, isValidChordCountList } from '../services';
 import { CagedType, Chord } from '../config';
 
@@ -16,8 +16,8 @@ interface ChordSettingsContextProps {
 export const ChordSettingsContext = createContext<ChordSettingsContextProps | undefined>(undefined);
 
 export const ChordSettingsContextProvider = ({ children }: { children: React.ReactNode }) => {
-  const [chords, setChords] = useState<Chord[]>(getListOfRandomChords(DEFAULT_NUMBER_OF_NOTE));
-  const [numberOfChordDisplayed, setNumberOfChordDisplayed] = useState(DEFAULT_NUMBER_OF_NOTE);
+  const [chords, setChords] = useState<Chord[]>(getListOfRandomChords(DEFAULT_NUMBER_OF_CHORD));
+  const [numberOfChordDisplayed, setNumberOfChordDisplayed] = useState(DEFAULT_NUMBER_OF_CHORD);
   const [isShapeVisible, setIsShapeVisible] = useState(false);
   const [cagedPosition, setCagedPosition] = useState<CagedType>(getRandomNoteFromCaged());
 

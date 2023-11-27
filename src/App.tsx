@@ -1,7 +1,9 @@
-import { Button, ChakraProvider } from "@chakra-ui/react";
-import { ChordsPage, NotesPage } from "./pages";
-import { AppPages } from "./config";
-import { useState } from "react";
+import { Button, ChakraProvider } from '@chakra-ui/react';
+import { ChordsPage, NotesPage } from './pages';
+import { AppPages } from './config';
+import { useState } from 'react';
+import { NoteSettingsContextProvider } from './contexts/NoteContext';
+import { ChordSettingsContextProvider } from './contexts/ChordContext';
 
 const App = () => {
   const [selectedPage, setSelectedPage] = useState(AppPages.notes);
@@ -19,15 +21,19 @@ const App = () => {
             Switch to notes
           </Button>
         )}
-        {selectedPage === AppPages.notes && <NotesPage />}
-        {selectedPage === AppPages.chords && <ChordsPage />}
+        {selectedPage === AppPages.notes && (
+          <NoteSettingsContextProvider>
+            <NotesPage />
+          </NoteSettingsContextProvider>
+        )}
+        {selectedPage === AppPages.chords && (
+          <ChordSettingsContextProvider>
+            <ChordsPage />
+          </ChordSettingsContextProvider>
+        )}
         <div className="mb-5">
-          {"Made with ❤️ by "}
-          <a
-            href="https://github.com/cyrilgourgouillon"
-            target="_blank"
-            className="text-red-700"
-          >
+          {'Made with ❤️ by '}
+          <a href="https://github.com/cyrilgourgouillon" target="_blank" className="text-red-700">
             Cyril Gourgouillon
           </a>
         </div>

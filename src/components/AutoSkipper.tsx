@@ -1,22 +1,11 @@
 import { ButtonGroup, IconButton, useToast } from "@chakra-ui/react";
-import { useEffect } from "react";
 import { Speed, speeds } from "../config";
 import { getSpeedColor, getSpeedIcon } from "../services";
 import { useSpeedContext } from "../hooks";
 
-export const AutoSkipper = ({ onSkip }: { onSkip: () => void }) => {
+export const AutoSkipper = () => {
   const toast = useToast();
   const {speed, setCurrentSpeed} = useSpeedContext();
-
-  useEffect(() => {
-    if (speed) {
-      const skipInterval = setInterval(() => {
-        onSkip();
-      }, speed);
-
-      return () => clearInterval(skipInterval);
-    }
-  }, [onSkip, speed]);
 
   const triggerToast = (skipDuration: Speed) => {
     toast({

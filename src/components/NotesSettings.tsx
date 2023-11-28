@@ -47,7 +47,7 @@ export const NotesSettings = () => {
             <Button variant="outline" leftIcon={<MdBuild />} onClick={toggleStringVisible}>
               Toggle string complexity
             </Button>
-            <AutoSkipper onSkip={getRandomNotesOnClick} />
+            <AutoSkipper />
           </div>
         </PopoverBody>
       </PopoverContent>

@@ -57,7 +57,7 @@ export const ChordsSettings = () => {
             >
               Toggle shape complexity
             </Button>
-            <AutoSkipper onSkip={getRandomChordsOnClick} />
+            <AutoSkipper />
           </div>
         </PopoverBody>
       </PopoverContent>

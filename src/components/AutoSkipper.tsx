@@ -1,23 +1,16 @@
-import { ButtonGroup, IconButton, useToast } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
-import { Speed, speeds } from '../config';
-import { getSpeedColor, getSpeedIcon } from '../services';
+import { ButtonGroup, IconButton, useToast } from "@chakra-ui/react";
+import { useEffect } from "react";
+import { Speed, speeds } from "../config";
+import { getSpeedColor, getSpeedIcon } from "../services";
+import { useSpeedContext } from "../hooks";
 
-export const AutoSkipper = ({
-  onSkip,
-  onSpeedChange,
-}: {
-  onSkip: () => void;
-  onSpeedChange: (speed: Speed | undefined) => void;
-}) => {
+export const AutoSkipper = ({ onSkip }: { onSkip: () => void }) => {
   const toast = useToast();
-  const [speed, setSpeed] = useState<Speed | undefined>(undefined);
+  const {speed, setCurrentSpeed} = useSpeedContext();
 
   useEffect(() => {
     if (speed) {
       const skipInterval = setInterval(() => {
-        console.log('tac');
-
         onSkip();
       }, speed);
 
@@ -28,7 +21,7 @@ export const AutoSkipper = ({
   const triggerToast = (skipDuration: Speed) => {
     toast({
       title: `Auto skip every ${skipDuration / 1000}"`,
-      status: 'info',
+      status: "info",
       duration: 1000,
     });
   };
@@ -43,15 +36,13 @@ export const AutoSkipper = ({
             icon={getSpeedIcon(s)}
             onClick={() => {
               if (speed === s) {
-                setSpeed(undefined);
-                onSpeedChange(undefined);
+                setCurrentSpeed(undefined);
               } else {
                 triggerToast(s);
-                setSpeed(s);
-                onSpeedChange(s);
+                setCurrentSpeed(s);
               }
             }}
-            variant={'outline'}
+            variant={"outline"}
             isActive={speed === s}
             colorScheme={getSpeedColor(s)}
           />

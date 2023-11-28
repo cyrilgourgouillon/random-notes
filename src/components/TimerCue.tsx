@@ -1,9 +1,12 @@
-import { useEffect, useState } from 'react';
-import { Speed } from '../config';
-import { GoDot, GoDotFill } from 'react-icons/go';
+import { useEffect, useState } from "react";
+import { Speed } from "../config";
+import { GoDot, GoDotFill } from "react-icons/go";
+import { useSpeedContext } from "../hooks";
 
-export const TimerCue = ({ speed }: { speed: Speed }) => {
-  const numberOfDots = speed / 1000 - 1;
+export const TimerCue = () => {
+  const { speed } = useSpeedContext();
+
+  const numberOfDots = speed ? speed / 1000 - 1 : 0;
   const [secondsElapsed, setSecondsElapsed] = useState(0);
 
   const dots: React.ReactNode[] = [];
@@ -19,8 +22,6 @@ export const TimerCue = ({ speed }: { speed: Speed }) => {
     setSecondsElapsed(0);
     if (speed) {
       const stepInterval = setInterval(() => {
-        console.log('tic');
-
         setSecondsElapsed((prevState: number) => prevState + 1);
       }, 1000);
 
@@ -38,5 +39,7 @@ export const TimerCue = ({ speed }: { speed: Speed }) => {
     return <></>;
   }
 
-  return <div className="flex mb-3 text-2xl text-blue-600">{dots.map((d) => d)}</div>;
+  return (
+    <div className="flex mb-3 text-2xl text-blue-600">{dots.map((d, i) => <div key={i}>{d}</div>)}</div>
+  );
 };

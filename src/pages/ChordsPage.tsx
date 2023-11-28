@@ -1,10 +1,16 @@
-import { ChordsList, ChordsSettings } from "../components";
+import { ChordsList, ChordsSettings, TimerCue } from "../components";
 
-import { useChordSettingsContext } from "../hooks";
+import { useChordSettingsContext, useSpeedContext } from "../hooks";
 
 export const ChordsPage = () => {
   const { chords, isShapeVisible, cagedPosition, getRandomChordsOnClick } =
     useChordSettingsContext();
+  const { resetSecondsElapsed } = useSpeedContext();
+
+  const handleChordsListOnClick = () => {
+    getRandomChordsOnClick();
+    resetSecondsElapsed();
+  }
 
   const ShapeDecorator: React.ReactNode = (
     <div className={`${isShapeVisible ? "" : "invisible"}`}>
@@ -19,8 +25,9 @@ export const ChordsPage = () => {
           <ChordsList
             chords={chords}
             ShapeDecorator={ShapeDecorator}
-            onClick={getRandomChordsOnClick}
+            onClick={handleChordsListOnClick}
           />
+          <TimerCue />
           <ChordsSettings />
         </div>
       </div>

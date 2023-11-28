@@ -5,7 +5,7 @@ import { useSpeedContext } from "../hooks";
 export const TimerCue = () => {
   const { speed, secondsElapsed } = useSpeedContext();
 
-  const numberOfDots = speed ? speed / 1000 - 1 : 0;
+  const numberOfDots = speed ? speed / 1000: 0;
   const dots: React.ReactNode[] = [];
 
   for (let i = 0; i < secondsElapsed; i++) {

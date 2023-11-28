@@ -1,4 +1,4 @@
-import { NotesList, NotesSettings } from '../components';
+import { NotesList, NotesSettings, TimerCue } from '../components';
 import { useNoteSettingsContext } from '../hooks';
 
 export const NotesPage = () => {
@@ -13,6 +13,7 @@ export const NotesPage = () => {
       <div className="w-screen flex items-center justify-center">
         <div className="flex flex-col items-center">
           <NotesList notes={notes} GuitarStringDecorator={GuitarStringDecorator} onClick={getRandomNotesOnClick} />
+          {speed && <TimerCue speed={speed}/>}
           <NotesSettings />
         </div>
       </div>

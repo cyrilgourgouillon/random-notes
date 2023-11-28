@@ -13,10 +13,15 @@ import { MdBuild } from 'react-icons/md';
 import { NOTES_LIST_MIN, NOTES_LIST_MAX } from '../config/constants';
 import { AutoSkipper } from './AutoSkipper';
 import { useNoteSettingsContext } from '../hooks';
+import { Speed } from '../config';
 
 export const NotesSettings = () => {
   const { numberOfNoteDisplayed, getRandomNotesOnClick, changeNumberOfNoteDisplayed, toggleStringVisible } =
     useNoteSettingsContext();
+
+  const handleOnSpeedChange = (speed: Speed | undefined) => {
+    setCurrentSpeed(speed);
+  }
 
   return (
     <Popover>
@@ -47,7 +52,7 @@ export const NotesSettings = () => {
             <Button variant="outline" leftIcon={<MdBuild />} onClick={toggleStringVisible}>
               Toggle string complexity
             </Button>
-            <AutoSkipper onSkip={getRandomNotesOnClick} />
+            <AutoSkipper onSkip={getRandomNotesOnClick} onSpeedChange={handleOnSpeedChange} />
           </div>
         </PopoverBody>
       </PopoverContent>

@@ -3,13 +3,21 @@ import { useEffect, useState } from 'react';
 import { Speed, speeds } from '../config';
 import { getSpeedColor, getSpeedIcon } from '../services';
 
-export const AutoSkipper = ({ onSkip }: { onSkip: () => void }) => {
+export const AutoSkipper = ({
+  onSkip,
+  onSpeedChange,
+}: {
+  onSkip: () => void;
+  onSpeedChange: (speed: Speed | undefined) => void;
+}) => {
   const toast = useToast();
   const [speed, setSpeed] = useState<Speed | undefined>(undefined);
 
   useEffect(() => {
     if (speed) {
       const skipInterval = setInterval(() => {
+        console.log('tac');
+
         onSkip();
       }, speed);
 
@@ -27,7 +35,7 @@ export const AutoSkipper = ({ onSkip }: { onSkip: () => void }) => {
 
   return (
     <>
-      <ButtonGroup isAttached className='flex justify-center'>
+      <ButtonGroup isAttached className="flex justify-center">
         {speeds.map((s, i) => (
           <IconButton
             key={i}
@@ -36,9 +44,11 @@ export const AutoSkipper = ({ onSkip }: { onSkip: () => void }) => {
             onClick={() => {
               if (speed === s) {
                 setSpeed(undefined);
+                onSpeedChange(undefined);
               } else {
                 triggerToast(s);
                 setSpeed(s);
+                onSpeedChange(s);
               }
             }}
             variant={'outline'}

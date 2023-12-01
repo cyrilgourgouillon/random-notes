@@ -4,3 +4,4 @@ export * from './AutoSkipper';
 export * from './NotesSettings'
 export * from './ChordsSettings';
 export * from './TimerCue';
+export * from './NoteSelector';

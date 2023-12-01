@@ -10,6 +10,12 @@ export const getListOfRandomNotes = (count: number): Note[] => {
   return randomNotes.slice(undefined, count);
 };
 
+export const getListOfRandomNotesOf = (allNotes: Note[], count: number): Note[] => {
+  const randomNotes = shuffle(allNotes);
+
+  return randomNotes.slice(undefined, count);
+};
+
 export const isValidNoteCountList = (count: number): boolean => {
   return count >= NOTES_LIST_MIN && count <= NOTES_LIST_MAX
 }

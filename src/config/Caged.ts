@@ -1,13 +1,9 @@
-import { Notes } from ".";
+export const cagedNotes = [
+	`Shape C`,
+	`Shape A`,
+	`Shape G`,
+	`Shape E`,
+	`Shape D`,
+] as const
 
-export enum Caged {
-  Shape1 = `Shape ${Notes.C}`,
-  Shape2 = `Shape ${Notes.A}`,
-  Shape3 = `Shape ${Notes.G}`,
-  Shape4 = `Shape ${Notes.E}`,
-  Shape5 = `Shape ${Notes.D}`,
-}
-
-export type CagedType = keyof typeof Caged;
-
-export const cagedNotes = Object.values(Caged) as unknown as CagedType[];
+export type Caged = typeof cagedNotes[number];

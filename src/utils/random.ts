@@ -1,3 +1,3 @@
-export const getRandomItemFrom = <T>(arrary: T[]): T => {
-  return arrary[Math.floor(Math.random()*arrary.length)];
+export const getRandomItemFrom = <T>(array: readonly T[]): T => {
+	return array[Math.floor(Math.random() * array.length)];
 };

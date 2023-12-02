@@ -20,7 +20,7 @@ export const ChordSelector = () => {
       <Box position="relative" padding="2">
         <Divider />
         <AbsoluteCenter bg="white" px="4">
-          Chords selector
+          Type selector
         </AbsoluteCenter>
       </Box>
       <div className="flex flex-row flex-wrap justify-center gap-1">

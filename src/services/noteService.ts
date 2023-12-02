@@ -4,14 +4,8 @@ import { NOTES_LIST_MAX, NOTES_LIST_MIN } from "../config/constants";
 import { getRandomItemFrom } from "../utils/random";
 import { shuffle } from "../utils/shuffle";
 
-export const getListOfRandomNotes = (count: number): Note[] => {
-  const randomNotes = shuffle(notes);
-
-  return randomNotes.slice(undefined, count);
-};
-
-export const getListOfRandomNotesOf = (allNotes: Note[], count: number): Note[] => {
-  const randomNotes = shuffle(allNotes);
+export const getListOfRandomNotes = (count: number, allNotes?: Note[]): Note[] => {
+  const randomNotes = shuffle(allNotes ?? notes);
 
   return randomNotes.slice(undefined, count);
 };

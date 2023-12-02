@@ -13,6 +13,7 @@ import { MdBuild } from "react-icons/md";
 import { CHORDS_LIST_MIN, CHORDS_LIST_MAX } from "../config/constants";
 import { AutoSkipper } from "./AutoSkipper";
 import { useChordSettingsContext } from "../hooks";
+import { ChordSelector } from "./ChordTypeSelector";
 
 export const ChordsSettings = () => {
   const {
@@ -57,6 +58,7 @@ export const ChordsSettings = () => {
             >
               Toggle shape complexity
             </Button>
+            <ChordSelector />
             <AutoSkipper />
           </div>
         </PopoverBody>

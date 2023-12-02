@@ -1,24 +1,24 @@
 import { getRandomNote } from "./";
-import { Chord, ChordType, chords } from "../config";
+import { Chord, ChordType, chordTypes } from "../config";
 import { getRandomItemFrom } from "../utils/random";
 import { CHORDS_LIST_MAX, CHORDS_LIST_MIN } from "../config/constants";
 
-export const getRandomChordType = (): ChordType => {
-  return getRandomItemFrom(chords);
+export const getRandomChordType = (allChordTypes?: ChordType[]): ChordType => {
+  return getRandomItemFrom(allChordTypes ?? chordTypes);
 };
 
-export const getRandomChord = (): Chord => {
-  return { note: getRandomNote(), chordType: getRandomChordType() } as Chord;
+export const getRandomChord = (allChordTypes?: ChordType[]): Chord => {
+  return { note: getRandomNote(), chordType: getRandomChordType(allChordTypes)} as Chord;
 };
 
 export const chordToString = (chord: Chord): string => {
   return `${chord.note}${chord.chordType}`;
 }
 
-export const getListOfRandomChords = (count: number): Chord[] => {
+export const getListOfRandomChords = (count: number, allChordTypes?: ChordType[]): Chord[] => {
   const randomChords: Chord[] = [];
   for(let i = 0; i < count; i++) {
-    randomChords.push(getRandomChord());
+    randomChords.push(getRandomChord(allChordTypes));
   }
   return randomChords;
 };

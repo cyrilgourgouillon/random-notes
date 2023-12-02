@@ -1,15 +1,13 @@
-import { createContext, useCallback, useEffect, useState } from "react";
-import { DEFAULT_NUMBER_OF_CHORD } from "../config/constants";
-import {
-  getListOfRandomChords,
-  getRandomNoteFromCaged,
-  isValidChordCountList,
-} from "../services";
-import { CagedType, Chord } from "../config";
-import { useSpeedContext } from "../hooks";
+import { Dispatch, SetStateAction, createContext, useCallback, useEffect, useState } from 'react';
+import { DEFAULT_NUMBER_OF_CHORD } from '../config/constants';
+import { getListOfRandomChords, getRandomNoteFromCaged, isValidChordCountList } from '../services';
+import { CagedType, Chord, ChordType, chordTypes as allChordTypes } from '../config';
+import { useSpeedContext } from '../hooks';
 
 interface ChordSettingsContextProps {
   chords: Chord[];
+  availableChordTypes: ChordType[];
+  setAvailableChordTypes: Dispatch<SetStateAction<ChordType[]>>;
   numberOfChordDisplayed: number;
   isShapeVisible: boolean;
   cagedPosition: CagedType;
@@ -18,25 +16,14 @@ interface ChordSettingsContextProps {
   toggleShapeVisible: () => void;
 }
 
-export const ChordSettingsContext = createContext<
-  ChordSettingsContextProps | undefined
->(undefined);
+export const ChordSettingsContext = createContext<ChordSettingsContextProps | undefined>(undefined);
 
-export const ChordSettingsContextProvider = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
-  const [chords, setChords] = useState<Chord[]>(
-    getListOfRandomChords(DEFAULT_NUMBER_OF_CHORD)
-  );
-  const [numberOfChordDisplayed, setNumberOfChordDisplayed] = useState(
-    DEFAULT_NUMBER_OF_CHORD
-  );
+export const ChordSettingsContextProvider = ({ children }: { children: React.ReactNode }) => {
+  const [availableChordTypes, setAvailableChordTypes] = useState<ChordType[]>([...allChordTypes]);
+  const [chords, setChords] = useState<Chord[]>(getListOfRandomChords(DEFAULT_NUMBER_OF_CHORD, availableChordTypes));
+  const [numberOfChordDisplayed, setNumberOfChordDisplayed] = useState(DEFAULT_NUMBER_OF_CHORD);
   const [isShapeVisible, setIsShapeVisible] = useState(false);
-  const [cagedPosition, setCagedPosition] = useState<CagedType>(
-    getRandomNoteFromCaged()
-  );
+  const [cagedPosition, setCagedPosition] = useState<CagedType>(getRandomNoteFromCaged());
 
   const { speed, secondsElapsed, resetSecondsElapsed } = useSpeedContext();
 
@@ -55,9 +42,9 @@ export const ChordSettingsContextProvider = ({
   };
 
   const getRandomChordsOnClick = useCallback(() => {
-    setChords(getListOfRandomChords(numberOfChordDisplayed));
+    setChords(getListOfRandomChords(numberOfChordDisplayed, availableChordTypes));
     setCagedPosition(getRandomNoteFromCaged());
-  }, [numberOfChordDisplayed]);
+  }, [numberOfChordDisplayed, availableChordTypes]);
 
   useEffect(() => {
     if (speed && speed / 1000 === secondsElapsed) {
@@ -68,13 +55,15 @@ export const ChordSettingsContextProvider = ({
 
   useEffect(() => {
     resetSecondsElapsed();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [speed]);
 
   return (
     <ChordSettingsContext.Provider
       value={{
         chords,
+        availableChordTypes,
+        setAvailableChordTypes,
         numberOfChordDisplayed,
         isShapeVisible,
         cagedPosition,

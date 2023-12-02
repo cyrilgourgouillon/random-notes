@@ -1,9 +1,9 @@
 import { Dispatch, SetStateAction, createContext, useCallback, useEffect, useState } from "react";
 import { DEFAULT_NUMBER_OF_NOTE } from "../config/constants";
 import {
-  getListOfRandomNotesOf,
   getRandomString,
   isValidNoteCountList,
+  getListOfRandomNotes,
 } from "../services";
 import { GuitarString, Note, notes as allNotes } from "../config";
 import { useSpeedContext } from "../hooks";
@@ -31,7 +31,7 @@ export const NoteSettingsContextProvider = ({
 }) => {
   const [availableNotes, setAvailableNotes] = useState<Note[]>([...allNotes]);
   const [notes, setNotes] = useState<Note[]>(
-    getListOfRandomNotesOf(availableNotes, DEFAULT_NUMBER_OF_NOTE)
+    getListOfRandomNotes(DEFAULT_NUMBER_OF_NOTE, availableNotes)
   );
   const [numberOfNoteDisplayed, setNumberOfNoteDisplayed] = useState(
     DEFAULT_NUMBER_OF_NOTE
@@ -58,7 +58,7 @@ export const NoteSettingsContextProvider = ({
   };
 
   const getRandomNotesOnClick = useCallback(() => {
-    setNotes(getListOfRandomNotesOf(availableNotes, numberOfNoteDisplayed));
+    setNotes(getListOfRandomNotes(numberOfNoteDisplayed, availableNotes));
     setGuitarString(getRandomString());
   }, [availableNotes, numberOfNoteDisplayed]);
 

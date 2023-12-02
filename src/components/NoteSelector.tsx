@@ -6,12 +6,12 @@ export const NoteSelector = () => {
   const { availableNotes, setAvailableNotes } = useNoteSettingsContext();
 
   const handleRemoveNote = (note: Note) => {
-    console.log('remove');
-    setAvailableNotes(availableNotes.filter((n) => n !== note));
+    if (availableNotes.length !== 1) {
+      setAvailableNotes(availableNotes.filter((n) => n !== note));
+    }
   };
 
   const handleAddNote = (note: Note) => {
-    console.log('add');
     setAvailableNotes([note, ...availableNotes]);
   };
 
@@ -20,7 +20,7 @@ export const NoteSelector = () => {
       <Box position="relative" padding="2">
         <Divider />
         <AbsoluteCenter bg="white" px="4">
-          Notes selector
+          Note selector
         </AbsoluteCenter>
       </Box>
       <div className="flex flex-row flex-wrap justify-center gap-1">

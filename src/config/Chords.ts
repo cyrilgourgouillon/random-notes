@@ -1,15 +1,15 @@
 import { Note } from ".";
 
 export enum ChordsType {
-  Major = "",
+  Major = "M",
   Minor = "m",
   MajorSeventh = "maj7",
   MinorSeventh = "min7",
 }
 
-export type ChordType = keyof typeof ChordsType;
+export type ChordType = '' | 'm' | 'maj7' | 'min7';
 
-export const chords = Object.values(ChordsType) as unknown as ChordType[];
+export const chordTypes = Object.values(ChordsType) as ChordType[];
 
 export type Chord = {
   note: Note;

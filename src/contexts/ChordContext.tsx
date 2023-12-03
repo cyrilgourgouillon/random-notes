@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, createContext, useCallback, useEffect, useState } from 'react';
 import { DEFAULT_NUMBER_OF_CHORD } from '../config/constants';
 import { getListOfRandomChords, getRandomNoteFromCaged, isValidChordCountList } from '../services';
-import { CagedType, Chord, ChordType, chordTypes as allChordTypes } from '../config';
+import { Caged, Chord, ChordType, chordTypes as allChordTypes } from '../config';
 import { useSpeedContext } from '../hooks';
 
 interface ChordSettingsContextProps {
@@ -10,7 +10,7 @@ interface ChordSettingsContextProps {
   setAvailableChordTypes: Dispatch<SetStateAction<ChordType[]>>;
   numberOfChordDisplayed: number;
   isShapeVisible: boolean;
-  cagedPosition: CagedType;
+  cagedPosition: Caged;
   getRandomChordsOnClick: () => void;
   changeNumberOfChordDisplayed: (step: number) => void;
   toggleShapeVisible: () => void;
@@ -23,7 +23,7 @@ export const ChordSettingsContextProvider = ({ children }: { children: React.Rea
   const [chords, setChords] = useState<Chord[]>(getListOfRandomChords(DEFAULT_NUMBER_OF_CHORD, availableChordTypes));
   const [numberOfChordDisplayed, setNumberOfChordDisplayed] = useState(DEFAULT_NUMBER_OF_CHORD);
   const [isShapeVisible, setIsShapeVisible] = useState(false);
-  const [cagedPosition, setCagedPosition] = useState<CagedType>(getRandomNoteFromCaged());
+  const [cagedPosition, setCagedPosition] = useState<Caged>(getRandomNoteFromCaged());
 
   const { speed, secondsElapsed, resetSecondsElapsed } = useSpeedContext();
 

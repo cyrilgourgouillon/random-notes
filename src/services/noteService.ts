@@ -1,5 +1,5 @@
 import { Note, notes, cagedNotes } from "../config";
-import { CagedType } from "../config/Caged";
+import { Caged } from "../config/Caged";
 import { NOTES_LIST_MAX, NOTES_LIST_MIN } from "../config/constants";
 import { getRandomItemFrom } from "../utils/random";
 import { shuffle } from "../utils/shuffle";
@@ -18,6 +18,6 @@ export const getRandomNote = (): Note => {
   return getRandomItemFrom(notes);
 };
 
-export const getRandomNoteFromCaged = (): CagedType => {
+export const getRandomNoteFromCaged = (): Caged => {
   return getRandomItemFrom(cagedNotes);
 }

@@ -2,7 +2,7 @@ import { NotesList, NotesSettings, TimerCue } from '../components';
 import { useNoteSettingsContext, useSpaceBarEffect, useSpeedContext } from '../hooks';
 
 export const NotesPage = () => {
-  const { notes, isStringVisible, guitarString, getRandomNotesOnClick } = useNoteSettingsContext();
+  const { notes, isStringVisible, guitarString, getRandomNotesOnClick, isColorVisible } = useNoteSettingsContext();
   const { resetSecondsElapsed } = useSpeedContext();
 
   const handleNotesListOnClick = () => {
@@ -20,7 +20,7 @@ export const NotesPage = () => {
     <div className="h-full flex flex-col items-center justify-center">
       <div className="w-screen flex items-center justify-center">
         <div className="flex flex-col items-center">
-          <NotesList notes={notes} GuitarStringDecorator={GuitarStringDecorator} onClick={handleNotesListOnClick} />
+          <NotesList notes={notes} GuitarStringDecorator={GuitarStringDecorator} onClick={handleNotesListOnClick} isColored={isColorVisible} />
           <TimerCue />
           <NotesSettings />
         </div>

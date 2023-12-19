@@ -8,7 +8,8 @@ import {
   PopoverBody,
   PopoverTrigger,
 } from '@chakra-ui/react';
-import { FaMinus, FaPlus } from 'react-icons/fa';
+import { FaMinus, FaPlus, FaGuitar } from 'react-icons/fa';
+import { BiSolidColor } from "react-icons/bi";
 import { MdBuild } from 'react-icons/md';
 import { NOTES_LIST_MIN, NOTES_LIST_MAX } from '../config/constants';
 import { AutoSkipper } from './AutoSkipper';
@@ -16,7 +17,7 @@ import { useNoteSettingsContext } from '../hooks';
 import { NoteSelector } from '.';
 
 export const NotesSettings = () => {
-  const { numberOfNoteDisplayed, getRandomNotesOnClick, changeNumberOfNoteDisplayed, toggleStringVisible } =
+  const { numberOfNoteDisplayed, getRandomNotesOnClick, changeNumberOfNoteDisplayed, toggleStringVisible, toggleColorVisible } =
     useNoteSettingsContext();
 
   return (
@@ -30,14 +31,16 @@ export const NotesSettings = () => {
         <PopoverArrow />
         <PopoverBody>
           <div className="flex flex-col gap-3 items-stretch w-full">
-            <ButtonGroup variant='outline' className="flex flex-row items-stretch justify-stretch">
+            <ButtonGroup variant="outline" className="flex flex-row items-stretch justify-stretch">
               <IconButton
                 aria-label="minus"
                 icon={<FaMinus />}
                 onClick={() => changeNumberOfNoteDisplayed(-1)}
                 disabled={numberOfNoteDisplayed === NOTES_LIST_MIN}
               />
-              <Button className='flex-grow' onClick={getRandomNotesOnClick}>Generate list of {numberOfNoteDisplayed} notes</Button>
+              <Button className="flex-grow" onClick={getRandomNotesOnClick}>
+                Generate list of {numberOfNoteDisplayed} notes
+              </Button>
               <IconButton
                 aria-label="plus"
                 icon={<FaPlus />}
@@ -45,9 +48,14 @@ export const NotesSettings = () => {
                 disabled={numberOfNoteDisplayed === NOTES_LIST_MAX}
               />
             </ButtonGroup>
-            <Button variant="outline" leftIcon={<MdBuild />} onClick={toggleStringVisible}>
-              Toggle string complexity
-            </Button>
+            <ButtonGroup variant="outline" className="flex flex-row items-stretch justify-stretch">
+              <Button className="flex-grow" variant="outline" leftIcon={<FaGuitar />} onClick={toggleStringVisible}>
+                Toggle string
+              </Button>
+              <Button className="flex-grow" variant="outline" leftIcon={<BiSolidColor />} onClick={toggleColorVisible}>
+                Toggle color
+              </Button>
+            </ButtonGroup>
             <NoteSelector />
             <AutoSkipper />
           </div>

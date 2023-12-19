@@ -1,5 +1,5 @@
 import { NotesList, NotesSettings, TimerCue } from '../components';
-import { useNoteSettingsContext, useSpeedContext } from '../hooks';
+import { useNoteSettingsContext, useSpaceBarEffect, useSpeedContext } from '../hooks';
 
 export const NotesPage = () => {
   const { notes, isStringVisible, guitarString, getRandomNotesOnClick } = useNoteSettingsContext();
@@ -9,6 +9,8 @@ export const NotesPage = () => {
     getRandomNotesOnClick();
     resetSecondsElapsed();
   }
+
+  useSpaceBarEffect(handleNotesListOnClick);
 
   const GuitarStringDecorator: React.ReactNode = (
     <div className={`${isStringVisible ? '' : 'invisible'}`}>{guitarString}</div>

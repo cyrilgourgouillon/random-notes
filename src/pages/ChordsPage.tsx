@@ -1,22 +1,25 @@
 import { ChordsList, ChordsSettings, TimerCue } from "../components";
 
-import { useChordSettingsContext, useSpeedContext } from "../hooks";
+import { useChordSettingsContext, useSpaceBarEffect, useSpeedContext } from "../hooks";
 
 export const ChordsPage = () => {
   const { chords, isShapeVisible, cagedPosition, getRandomChordsOnClick } =
     useChordSettingsContext();
   const { resetSecondsElapsed } = useSpeedContext();
-
+  
   const handleChordsListOnClick = () => {
     getRandomChordsOnClick();
     resetSecondsElapsed();
   }
+
+  useSpaceBarEffect(handleChordsListOnClick);
 
   const ShapeDecorator: React.ReactNode = (
     <div className={`${isShapeVisible ? "" : "invisible"}`}>
       {cagedPosition}
     </div>
   );
+
 
   return (
     <div className="h-full flex flex-col items-center justify-center">

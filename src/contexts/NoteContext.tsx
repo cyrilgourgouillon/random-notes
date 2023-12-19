@@ -14,10 +14,12 @@ interface NoteSettingsContextProps {
   setAvailableNotes: Dispatch<SetStateAction<Note[]>>
   numberOfNoteDisplayed: number;
   isStringVisible: boolean;
+  isColorVisible: boolean;
   guitarString: GuitarString;
   getRandomNotesOnClick: () => void;
   changeNumberOfNoteDisplayed: (step: number) => void;
   toggleStringVisible: () => void;
+  toggleColorVisible: () => void;
 }
 
 export const NoteSettingsContext = createContext<
@@ -41,6 +43,8 @@ export const NoteSettingsContextProvider = ({
     getRandomString()
   );
 
+  const [isColorVisible, setIsColorVisible] = useState(false);
+
   const { speed, secondsElapsed, resetSecondsElapsed } = useSpeedContext();
 
   const changeNumberOfNoteDisplayed = (step: number) => {
@@ -55,6 +59,10 @@ export const NoteSettingsContextProvider = ({
 
   const toggleStringVisible = () => {
     setIsStringVisible((prevState: boolean) => !prevState);
+  };
+
+  const toggleColorVisible = () => {
+    setIsColorVisible((prevState: boolean) => !prevState);
   };
 
   const getRandomNotesOnClick = useCallback(() => {
@@ -82,10 +90,12 @@ export const NoteSettingsContextProvider = ({
         setAvailableNotes,
         numberOfNoteDisplayed,
         isStringVisible,
+        isColorVisible,
         guitarString,
         getRandomNotesOnClick,
         changeNumberOfNoteDisplayed,
         toggleStringVisible,
+        toggleColorVisible,
       }}
     >
       {children}

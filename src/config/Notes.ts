@@ -19,3 +19,23 @@ export const notes = [
 ] as const;
 
 export type Note = typeof notes[number];
+
+export const noteColors: Record<Note, string> = {
+  C: 'text-[#DA2A51]',
+  'C#': 'text-[#02AD9A]',
+  Db: 'text-[#02AD9A]',
+  D: 'text-[#F5892E]',
+  'D#': 'text-[#446BB1]',
+  Eb: 'text-[#446BB1]',
+  E: 'text-[#F3DD19]',
+  F: 'text-[#AE2C93]',
+  'F#': 'text-[#46B855]',
+  Gb: 'text-[#46B855]',
+  G: 'text-[#EE572E]',
+  'G#': 'text-[#019DDB]',
+  Ab: 'text-[#019DDB]',
+  A: 'text-[#FABD20]',
+  'A#': 'text-[#87499B]',
+  Bb: 'text-[#87499B]',
+  B: 'text-[#ACCF45]',
+};

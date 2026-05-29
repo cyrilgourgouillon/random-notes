@@ -45,7 +45,7 @@ export const Fretboard = ({
   const boardHeight = fretNumberTop + 16;
 
   const viewBoxWidth = isMobile ? boardWidth : boardWidth;
-  const viewBoxHeight = isMobile ? boardWidth : boardHeight;
+  const viewBoxHeight = isMobile ? boardWidth - 100 : boardHeight;
 
   const getStringY = (stringIndex: number) => topPadding + stringIndex * stringGap;
   const getFretX = (fret: number) => labelWidth + fret * fretWidth;
@@ -54,7 +54,7 @@ export const Fretboard = ({
   return (
     <div className="w-full flex justify-center overflow-hidden px-4">
       <svg
-        viewBox={`0 ${isMobile ? -50 : 0} ${viewBoxWidth} ${viewBoxHeight}`}
+        viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
         className="w-full max-w-2xl max-h-[55vh] md:max-h-none"
         role="img"
         aria-label="Six string guitar fretboard"

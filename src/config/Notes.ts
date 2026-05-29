@@ -18,7 +18,7 @@ export const notes = [
   'B',
 ] as const;
 
-export type Note = typeof notes[number];
+export type Note = (typeof notes)[number];
 
 export const noteColors: Record<Note, string> = {
   C: 'text-[#DA2A51]',
@@ -38,4 +38,18 @@ export const noteColors: Record<Note, string> = {
   'A#': 'text-[#87499B]',
   Bb: 'text-[#87499B]',
   B: 'text-[#ACCF45]',
+};
+
+export const chromaticNotes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'] as const;
+export const enharmonicNotes: Partial<Record<Note, Note>> = {
+  'C#': 'Db',
+  Db: 'C#',
+  'D#': 'Eb',
+  Eb: 'D#',
+  'F#': 'Gb',
+  Gb: 'F#',
+  'G#': 'Ab',
+  Ab: 'G#',
+  'A#': 'Bb',
+  Bb: 'A#',
 };

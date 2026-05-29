@@ -1,4 +1,4 @@
-import { AbsoluteCenter, Box, Button, Divider } from '@chakra-ui/react';
+import { AbsoluteCenter, Box, Button, Separator } from '@chakra-ui/react';
 import { Note, notes as allNotes } from '../config';
 import { useNoteSettingsContext } from '../hooks';
 
@@ -18,7 +18,7 @@ export const NoteSelector = () => {
   return (
     <>
       <Box position="relative" padding="2">
-        <Divider />
+        <Separator />
         <AbsoluteCenter bg="white" px="4">
           Note selector
         </AbsoluteCenter>
@@ -32,8 +32,8 @@ export const NoteSelector = () => {
               variant="outline"
               width={'10px'}
               size="sm"
-              isActive={noteIsActive}
-              colorScheme={noteIsActive ? 'green' : 'gray'}
+              data-active={noteIsActive ? '' : undefined}
+              colorPalette={noteIsActive ? 'green' : 'gray'}
               onClick={() => {
                 if (noteIsActive) {
                   handleRemoveNote(note);

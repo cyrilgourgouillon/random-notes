@@ -1,4 +1,4 @@
-import { AbsoluteCenter, Box, Button, Divider } from '@chakra-ui/react';
+import { AbsoluteCenter, Box, Button, Separator } from '@chakra-ui/react';
 import { ChordType, chordTypes as allChords } from '../config';
 import { useChordSettingsContext } from '../hooks';
 
@@ -18,7 +18,7 @@ export const ChordSelector = () => {
   return (
     <>
       <Box position="relative" padding="2">
-        <Divider />
+        <Separator />
         <AbsoluteCenter bg="white" px="4">
           Type selector
         </AbsoluteCenter>
@@ -31,8 +31,8 @@ export const ChordSelector = () => {
               key={chord}
               variant="outline"
               size="sm"
-              isActive={chordIsActive}
-              colorScheme={chordIsActive ? 'green' : 'gray'}
+              data-active={chordIsActive ? '' : undefined}
+              colorPalette={chordIsActive ? 'green' : 'gray'}
               onClick={() => {
                 if (chordIsActive) {
                   handleRemoveChordType(chord);

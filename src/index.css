@@ -1,3 +1,30 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+.practice-list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  font-size: 52px;
+  font-weight: 700;
+  line-height: 1.1;
+  cursor: pointer;
+  user-select: none;
+}
+
+.practice-list-decorator {
+  min-height: 27.5px;
+  font-size: 32px;
+  font-weight: 700;
+  color: #737373;
+}
+
+@media (min-width: 768px) {
+  .practice-list {
+    flex-direction: row;
+    gap: 1.75rem;
+    font-size: 75px;
+  }
+}

@@ -1,68 +1,59 @@
-import {
-  ButtonGroup,
-  IconButton,
-  Button,
-  PopoverContent,
-  Popover,
-  PopoverArrow,
-  PopoverBody,
-  PopoverTrigger,
-} from "@chakra-ui/react";
-import { FaMinus, FaPlus } from "react-icons/fa";
-import { MdBuild } from "react-icons/md";
-import { CHORDS_LIST_MIN, CHORDS_LIST_MAX } from "../config/constants";
-import { AutoSkipper } from "./AutoSkipper";
-import { useChordSettingsContext } from "../hooks";
-import { ChordSelector } from "./ChordTypeSelector";
+import { ButtonGroup, IconButton, Button, Popover } from '@chakra-ui/react';
+import { FaMinus, FaPlus } from 'react-icons/fa';
+import { MdBuild } from 'react-icons/md';
+import { CHORDS_LIST_MIN, CHORDS_LIST_MAX } from '../config/constants';
+import { AutoSkipper } from './AutoSkipper';
+import { useChordSettingsContext } from '../hooks';
+import { ChordSelector } from './ChordTypeSelector';
 
 export const ChordsSettings = () => {
   const {
     numberOfChordDisplayed,
     getRandomChordsOnClick,
     changeNumberOfChordDisplayed,
+    isShapeVisible,
     toggleShapeVisible,
   } = useChordSettingsContext();
 
   return (
-    <Popover>
-      <PopoverTrigger>
-        <IconButton icon={<MdBuild />} aria-label={"settings"}>
-          Settings
+    <Popover.Root>
+      <Popover.Trigger asChild>
+        <IconButton aria-label={'settings'}>
+          <MdBuild />
         </IconButton>
-      </PopoverTrigger>
-      <PopoverContent>
-        <PopoverArrow />
-        <PopoverBody>
-          <div className="flex flex-col gap-3 items-stretch">
-            <ButtonGroup variant="outline">
-              <IconButton
-                aria-label="minus"
-                icon={<FaMinus />}
-                onClick={() => changeNumberOfChordDisplayed(-1)}
-                disabled={numberOfChordDisplayed === CHORDS_LIST_MIN}
-              />
-              <Button onClick={getRandomChordsOnClick}>
-                Generate list of {numberOfChordDisplayed} chords
+      </Popover.Trigger>
+      <Popover.Positioner>
+        <Popover.Content>
+          <Popover.Arrow />
+          <Popover.Body>
+            <div className="flex flex-col gap-3 items-stretch">
+              <ButtonGroup variant="outline">
+                <IconButton
+                  aria-label="minus"
+                  onClick={() => changeNumberOfChordDisplayed(-1)}
+                  disabled={numberOfChordDisplayed === CHORDS_LIST_MIN}
+                >
+                  <FaMinus />
+                </IconButton>
+                <Button onClick={getRandomChordsOnClick}>Generate list of {numberOfChordDisplayed} chords</Button>
+                <IconButton
+                  aria-label="plus"
+                  onClick={() => changeNumberOfChordDisplayed(1)}
+                  disabled={numberOfChordDisplayed === CHORDS_LIST_MAX}
+                >
+                  <FaPlus />
+                </IconButton>
+              </ButtonGroup>
+              <Button variant={isShapeVisible ? 'outline' : 'subtle'} gap={2} onClick={toggleShapeVisible}>
+                <MdBuild />
+                Toggle shape complexity
               </Button>
-              <IconButton
-                aria-label="plus"
-                icon={<FaPlus />}
-                onClick={() => changeNumberOfChordDisplayed(1)}
-                disabled={numberOfChordDisplayed === CHORDS_LIST_MAX}
-              />
-            </ButtonGroup>
-            <Button
-              variant="outline"
-              leftIcon={<MdBuild />}
-              onClick={toggleShapeVisible}
-            >
-              Toggle shape complexity
-            </Button>
-            <ChordSelector />
-            <AutoSkipper />
-          </div>
-        </PopoverBody>
-      </PopoverContent>
-    </Popover>
+              <ChordSelector />
+              <AutoSkipper />
+            </div>
+          </Popover.Body>
+        </Popover.Content>
+      </Popover.Positioner>
+    </Popover.Root>
   );
 };

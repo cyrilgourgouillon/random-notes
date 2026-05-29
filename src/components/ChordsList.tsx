@@ -12,10 +12,10 @@ export const ChordsList = ({
 }) => {
   return (
     <>
-      <div className="text-[25px] md:text-[25px] font-bold text-neutral-500">{ShapeDecorator}</div>
+      <div className="practice-list-decorator">{ShapeDecorator}</div>
       <div
         onClick={onClick}
-        className="flex flex-col md:flex-row md:gap-7 text-[35px] md:text-[75px] mb-6 font-bold cursor-pointer select-none"
+        className="practice-list"
       >
         {chords.map((chord: Chord, index: number) => (
           <div key={index}>{chordToString(chord)}</div>

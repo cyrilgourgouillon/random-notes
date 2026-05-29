@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { SpeedContext } from "../contexts/SpeedContext";
+import { SpeedContext } from "../contexts/speedContextValue";
 
 export const useSpeedContext = () => {
   const context = useContext(SpeedContext);

@@ -1,16 +1,16 @@
-import { AbsoluteCenter, Box, ButtonGroup, Divider, IconButton, useToast } from '@chakra-ui/react';
+import { AbsoluteCenter, Box, ButtonGroup, IconButton, Separator } from '@chakra-ui/react';
 import { Speed, speeds } from '../config';
 import { getSpeedColor, getSpeedIcon } from '../services';
 import { useSpeedContext } from '../hooks';
+import { toaster } from './ui/toaster-store';
 
 export const AutoSkipper = () => {
-  const toast = useToast();
   const { speed, setCurrentSpeed } = useSpeedContext();
 
   const triggerToast = (skipDuration: Speed) => {
-    toast({
+    toaster.create({
       title: `Auto skip every ${skipDuration / 1000}"`,
-      status: 'info',
+      type: 'info',
       duration: 1000,
     });
   };
@@ -18,31 +18,38 @@ export const AutoSkipper = () => {
   return (
     <>
       <Box position="relative" padding="2">
-        <Divider />
+        <Separator />
         <AbsoluteCenter bg="white" px="4">
           Auto skipper
         </AbsoluteCenter>
       </Box>
-      <ButtonGroup isAttached className="flex justify-center">
-        {speeds.map((s, i) => (
-          <IconButton
-            key={i}
-            aria-label="minus"
-            icon={getSpeedIcon(s)}
-            onClick={() => {
-              if (speed === s) {
-                setCurrentSpeed(undefined);
-              } else {
-                triggerToast(s);
-                setCurrentSpeed(s);
-              }
-            }}
-            variant={'outline'}
-            isActive={speed === s}
-            colorScheme={getSpeedColor(s)}
-          />
-        ))}
-      </ButtonGroup>
+      <Box display="flex" justifyContent="center" width="100%">
+        <ButtonGroup attached>
+          {speeds.map((s, i) => {
+            const isSelected = speed === s;
+
+            return (
+              <IconButton
+                key={i}
+                aria-label="minus"
+                aria-pressed={isSelected}
+                onClick={() => {
+                  if (isSelected) {
+                    setCurrentSpeed(undefined);
+                  } else {
+                    triggerToast(s);
+                    setCurrentSpeed(s);
+                  }
+                }}
+                variant={isSelected ? 'solid' : 'outline'}
+                colorPalette={getSpeedColor(s)}
+              >
+                {getSpeedIcon(s)}
+              </IconButton>
+            );
+          })}
+        </ButtonGroup>
+      </Box>
     </>
   );
 };

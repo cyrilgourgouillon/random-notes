@@ -8,7 +8,7 @@ export const NotesPage = () => {
   const handleNotesListOnClick = () => {
     getRandomNotesOnClick();
     resetSecondsElapsed();
-  }
+  };
 
   useSpaceBarEffect(handleNotesListOnClick);
 
@@ -19,8 +19,13 @@ export const NotesPage = () => {
   return (
     <div className="h-full flex flex-col items-center justify-center">
       <div className="w-screen flex items-center justify-center">
-        <div className="flex flex-col items-center">
-          <NotesList notes={notes} GuitarStringDecorator={GuitarStringDecorator} onClick={handleNotesListOnClick} isColored={isColorVisible} />
+        <div className="flex flex-col items-center gap-5">
+          <NotesList
+            notes={notes}
+            GuitarStringDecorator={GuitarStringDecorator}
+            onClick={handleNotesListOnClick}
+            isColored={isColorVisible}
+          />
           <TimerCue />
           <NotesSettings />
         </div>

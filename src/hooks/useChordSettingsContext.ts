@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ChordSettingsContext } from "../contexts/ChordContext";
+import { ChordSettingsContext } from "../contexts/chordSettingsContext";
 
 export const useChordSettingsContext = () => {
   const context = useContext(ChordSettingsContext);

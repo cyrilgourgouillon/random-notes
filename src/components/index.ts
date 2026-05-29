@@ -5,3 +5,5 @@ export * from './NotesSettings'
 export * from './ChordsSettings';
 export * from './TimerCue';
 export * from './NoteSelector';
+export * from './Fretboard';
+export * from './FretboardSettings';

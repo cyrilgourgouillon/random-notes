@@ -1,15 +1,6 @@
-import { Dispatch, SetStateAction, createContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Speed } from '../config';
-
-interface SpeedContextProps {
-  speed: Speed | undefined,
-  setCurrentSpeed: (speed?: Speed) => void,
-  secondsElapsed: number,
-  setSecondsElapsed: Dispatch<SetStateAction<number>>,
-  resetSecondsElapsed: () => void,
-}
-
-export const SpeedContext = createContext<SpeedContextProps | undefined>(undefined);
+import { SpeedContext } from './speedContextValue';
 
 export const SpeedContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [speed, setSpeed] = useState<Speed>();
@@ -24,14 +15,16 @@ export const SpeedContextProvider = ({ children }: { children: React.ReactNode }
   }
 
   useEffect(() => {
-    if (speed) {
-      const stepInterval = setInterval(() => {
-        setSecondsElapsed((prevState: number) => prevState + 1);
-      }, 1000);
-
-      return () => clearInterval(stepInterval);
+    if (!speed) {
+      return;
     }
-  }, [secondsElapsed, setSecondsElapsed, speed]);
+
+    const stepInterval = setInterval(() => {
+      setSecondsElapsed((prevState: number) => prevState + 1);
+    }, 1000);
+
+    return () => clearInterval(stepInterval);
+  }, [speed]);
 
   return (
     <SpeedContext.Provider

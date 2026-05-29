@@ -32,9 +32,9 @@ jobs:
         uses: actions/checkout@v4
         
       - name: Set up Node
-        uses: actions/setup-node@v4 # Updated from v3 to v4
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22 # Updated to fix Vite requirement
           cache: 'npm'
           
       - name: Install dependencies
@@ -44,14 +44,14 @@ jobs:
         run: npm run build
         
       - name: Setup Pages
-        uses: actions/configure-pages@v5 # Updated from v3 to v5
+        uses: actions/configure-pages@v5
         
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3 # Updated from v2 to v3 (satisfies artifact v4 requirement)
+        uses: actions/upload-pages-artifact@v3
         with:
           # Upload dist repository
           path: './dist'
           
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4 # Updated from v2 to v4
+        uses: actions/deploy-pages@v4

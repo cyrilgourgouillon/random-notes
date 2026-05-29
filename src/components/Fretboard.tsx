@@ -45,7 +45,7 @@ export const Fretboard = ({
   const boardHeight = fretNumberTop + 16;
 
   const viewBoxWidth = isMobile ? boardWidth : boardWidth;
-  const viewBoxHeight = isMobile ? boardWidth - 100 : boardHeight;
+  const viewBoxHeight = isMobile ? boardWidth - 150 : boardHeight;
 
   const getStringY = (stringIndex: number) => topPadding + stringIndex * stringGap;
   const getFretX = (fret: number) => labelWidth + fret * fretWidth;

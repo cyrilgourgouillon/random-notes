@@ -122,9 +122,6 @@ export const FretboardPage = () => {
     <div className="h-full flex flex-col items-center justify-center">
       <div className="w-screen flex items-center justify-center">
         <div className="flex flex-col items-center gap-8">
-          <Text textStyle="xl" className={`${streak > 1 ? 'opacity-100' : 'opacity-0'}`}>
-            🔥 {streak}
-          </Text>
           <Fretboard
             markers={[
               {
@@ -136,6 +133,9 @@ export const FretboardPage = () => {
             showStringLabels={showStringLabels}
             showFretNumbers={showFretNumbers}
           />
+          <Text textStyle="xl" className={`${streak > 1 ? 'opacity-100' : 'opacity-0'}`}>
+            🔥 {streak}
+          </Text>
           <div className="flex flex-row flex-wrap justify-center gap-2 px-4 max-w-3xl">
             {getNoteGroups().map((noteGroup) => {
               const notesToCheck = [noteGroup.primary, noteGroup.enharmonic].filter(

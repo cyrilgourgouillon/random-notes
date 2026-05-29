@@ -66,7 +66,7 @@ export const Fretboard = ({
             return (
               <g key={`${stringName}-${stringIndex}`}>
                 {showStringLabels && (
-                  <text x="6" y={y + 3} className="fill-black text-[15px]" dominantBaseline="central">
+                  <text x="6" y={y + 3} fontSize={10} dominantBaseline="central">
                     {stringName}
                   </text>
                 )}
@@ -108,7 +108,8 @@ export const Fretboard = ({
                   y={fretNumberTop}
                   textAnchor="middle"
                   dominantBaseline="central"
-                  className="fill-black text-[11px]"
+                  className="fill-black"
+                  fontSize={10}
                 >
                   {fret}
                 </text>

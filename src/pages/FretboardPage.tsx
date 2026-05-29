@@ -1,4 +1,4 @@
-import { Button } from '@chakra-ui/react';
+import { Button, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { Fretboard, FretboardSettings } from '../components';
 import { chromaticNotes, enharmonicNotes, guitarStringNames, notes, type Note } from '../config';
@@ -67,6 +67,7 @@ export const FretboardPage = () => {
   const [answerHistory, setAnswerHistory] = useState<Note[]>([]);
   const [showStringLabels, setShowStringLabels] = useState(true);
   const [showFretNumbers, setShowFretNumbers] = useState(true);
+  const [streak, setStreak] = useState(0);
 
   useEffect(() => {
     if (!selectedNote) {
@@ -77,6 +78,7 @@ export const FretboardPage = () => {
       if (isAnswerCorrect) {
         setChallenge(getRandomChallenge());
         setAnswerHistory([]);
+        setStreak((currentStreak) => currentStreak + 1);
       }
       setSelectedNote(null);
       setIsAnswerCorrect(false);
@@ -97,6 +99,7 @@ export const FretboardPage = () => {
       setIsAnswerCorrect(true);
     } else {
       setAnswerHistory([...answerHistory, ...notesToCheck]);
+      setStreak(0);
     }
   };
 
@@ -119,6 +122,9 @@ export const FretboardPage = () => {
     <div className="h-full flex flex-col items-center justify-center">
       <div className="w-screen flex items-center justify-center">
         <div className="flex flex-col items-center gap-8">
+          <Text textStyle="xl" className={`${streak > 1 ? 'opacity-100' : 'opacity-0'}`}>
+            🔥 {streak}
+          </Text>
           <Fretboard
             markers={[
               {

@@ -10,7 +10,7 @@ export const AutoSkipper = () => {
   const triggerToast = (skipDuration: Speed) => {
     toaster.create({
       title: `Auto skip every ${skipDuration / 1000}"`,
-      type: 'info',
+      type: 'success',
       duration: 1000,
     });
   };

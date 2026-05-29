@@ -3,7 +3,7 @@ import { toaster } from './toaster-store';
 
 export const AppToaster = () => (
   <Portal>
-    <Toaster toaster={toaster}>
+    <Toaster toaster={toaster} className="w-xs">
       {(toast) => (
         <Toast.Root>
           <Toast.Indicator />

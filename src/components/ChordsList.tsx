@@ -1,5 +1,4 @@
 import { Chord } from '../config';
-import { chordToString } from '../services/chordService';
 
 export const ChordsList = ({
   chords,
@@ -18,7 +17,7 @@ export const ChordsList = ({
         className="practice-list"
       >
         {chords.map((chord: Chord, index: number) => (
-          <div key={index}>{chordToString(chord)}</div>
+          <div className='flex flex-row' key={index}><div>{chord.note}</div><div className='text-[25px] md:text-[55px] text-neutral-500'>{chord.chordType}</div></div>
         ))}
       </div>
     </>
